@@ -4,6 +4,8 @@
   "description": "setup completo para projetos Node.js, utilizando TypeScript, ESLint & Prettier, Jest, Husky & Lint Staged (commit hooks)",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
     "start:dev": "nodemon --watch 'src/' --exec 'ts-node src/index.ts' -e ts",
     "husky:prepare": "husky install",
     "test": "jest --passWithNoTests",
