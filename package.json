@@ -1,0 +1,11 @@
+{
+  "name": "ts-node-project-setup",
+  "version": "1.0.0",
+  "description": "setup completo para projetos Node.js, utilizando TypeScript, ESLint & Prettier, Jest, Husky & Lint Staged (commit hooks)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Duque",
+  "license": "MIT"
+}
