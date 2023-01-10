@@ -1,13 +1,6 @@
+import { Person } from "@/person";
 import * as express from "express";
 import { Request, Response } from "express";
-
-export class Person {
-  hello = `Hello, World!`;
-
-  sayHello() {
-    return this.hello;
-  }
-}
 
 const app = express();
 
