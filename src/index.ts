@@ -1,5 +1,21 @@
+import * as express from "express";
+import { Request, Response } from "express";
+
 export class Person {
-  sayMyName() {
-    return "Leo";
+  hello = `Hello, World!`;
+
+  sayHello() {
+    return this.hello;
   }
 }
+
+const app = express();
+
+app.get("/", (req: Request, res: Response) => {
+  res.send(new Person().sayHello());
+});
+
+const PORT = 3000;
+app.listen(PORT, () =>
+  console.log(`🚀 HTTP server is running on port: ${PORT}`)
+);

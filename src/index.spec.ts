@@ -2,5 +2,6 @@ import { Person } from "@/index";
 
 it("should sum", () => {
   const person = new Person();
-  expect(person.sayMyName()).toBe("Leo");
+  const sayHello = "Hello, World!";
+  expect(person.sayHello()).toBe(sayHello);
 });
