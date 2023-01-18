@@ -7,10 +7,15 @@
     "build": "tsup src",
     "start": "tsx dist/server.js",
     "start:dev": "tsx watch src/server.ts",
+    "full-lint": "eslint src --ext .ts,.tsx,.js,.jsx --fix --max-warnings=0",
     "husky:prepare": "husky install",
-    "test": "vitest run",
+    "lint-staged": "lint-staged",
+    "type-check": "tsc --noEmit",
+    "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
-    "test:push": "yarn test --coverage"
+    "test:staged": "npm test --findRelatedTests",
+    "test:push": "npm test --coverage",
+    "postinstall": "npm run husky:prepare"
   },
   "author": "¡Duque",
   "license": "MIT",
