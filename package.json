@@ -10,7 +10,7 @@
     "husky:prepare": "husky install",
     "test": "vitest run",
     "test:watch": "vitest",
-    "test:push": "yarn test run --coverage"
+    "test:push": "yarn test --coverage"
   },
   "author": "¡Duque",
   "license": "MIT",
