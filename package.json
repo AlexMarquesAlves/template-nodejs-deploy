@@ -8,10 +8,9 @@
     "start": "tsx dist/server.js",
     "start:dev": "tsx watch src/server.ts",
     "husky:prepare": "husky install",
-    "test": "vitest",
-    "test:watch": "yarn test --watch",
-    "test:staged": "yarn test --findRelatedTests",
-    "test:push": "yarn test --coverage"
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:push": "yarn test run --coverage"
   },
   "author": "¡Duque",
   "license": "MIT",
@@ -20,6 +19,7 @@
     "@types/node": "^18.11.18",
     "@typescript-eslint/eslint-plugin": "^5.48.0",
     "@typescript-eslint/parser": "^5.48.0",
+    "@vitest/coverage-c8": "^0.27.2",
     "eslint": "^8.31.0",
     "eslint-config-prettier": "^8.6.0",
     "git-commit-msg-linter": "^4.5.0",
