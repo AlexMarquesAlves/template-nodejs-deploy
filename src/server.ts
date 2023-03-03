@@ -1,21 +1,40 @@
-import z from "zod";
+import { PrismaClient } from "@prisma/client";
+import fastify from "fastify";
+import { z } from "zod";
 
-const userSchema = z.object({
-  name: z
-    .string()
-    .min(3, { message: "Thou name needs at least 3 characters" })
-    .transform((name) => name.toUpperCase()),
-  age: z.number().min(18, { message: "Thou need to be of legal age." }),
+const app = fastify();
+const prisma = new PrismaClient();
+
+app.get("/users", async () => {
+  const users = await prisma.user.findMany();
+
+  return { users };
 });
-type User = z.infer<typeof userSchema>;
 
-function saveUserToDatabase(user: User) {
-  const { name, age } = userSchema.parse(user);
+app.post("/users", async (request, reply) => {
+  const createUserSchema = z.object({
+    name: z.string(),
+    email: z.string().email(),
+  });
 
-  console.log(name, age);
-}
+  const { name, email } = createUserSchema.parse(request.body);
 
-saveUserToDatabase({
-  name: "¡Duque",
-  age: 23,
+  await prisma.user.create({
+    data: {
+      name,
+      email,
+    },
+  });
+
+  return reply.status(201).send();
 });
+
+const PORT = 3333;
+app
+  .listen({
+    host: "0.0.0.0",
+    port: process.env.PORT ? Number(process.env.PORT) : PORT,
+  })
+  .then(() => {
+    console.log(`🚀 HTTP server is running on port: ${PORT}`);
+  });
