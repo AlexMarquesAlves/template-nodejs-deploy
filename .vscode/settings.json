@@ -1,0 +1,10 @@
+{
+  "prettier.configPath": "./.prettierrc.json",
+  // "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "workbench.colorTheme": "Rosé Pine Moon",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.productIconTheme": "fluent-icons",
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "cSpell.words": ["Metadada"]
+}
