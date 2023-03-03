@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "setup completo para projetos Node.js, utilizando TypeScript, ESLint & Prettier, Jest, Husky & Lint Staged (commit hooks)",
   "main": "index.js",
+  "engines": {
+    "node": "18"
+  },
   "scripts": {
     "build": "tsup src",
-    "start": "tsx dist/server.js",
+    "start": "node dist/server.js",
     "start:dev": "tsx watch src/server.ts",
     "full-lint": "eslint src --ext .ts,.tsx,.js,.jsx --fix --max-warnings=0",
     "husky:prepare": "husky install",
