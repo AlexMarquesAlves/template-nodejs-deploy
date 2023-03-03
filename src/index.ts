@@ -1,14 +1,40 @@
-import { Person } from "@/person";
-import * as express from "express";
-import { Request, Response } from "express";
+import { PrismaClient } from "@prisma/client";
+import fastify from "fastify";
+import { z } from "zod";
 
-const app = express();
+const app = fastify();
+const prisma = new PrismaClient();
 
-app.get("/", (req: Request, res: Response) => {
-  res.send(new Person().sayHello());
+app.get("/users", async () => {
+  const users = await prisma.user.findMany();
+
+  return { users };
 });
 
-const PORT = 3000;
-app.listen(PORT, () =>
-  console.log(`🚀 HTTP server is running on port: ${PORT}`)
-);
+app.post("/users", async (request, reply) => {
+  const createUserSchema = z.object({
+    name: z.string(),
+    email: z.string().email(),
+  });
+
+  const { name, email } = createUserSchema.parse(request.body);
+
+  await prisma.user.create({
+    data: {
+      name,
+      email,
+    },
+  });
+
+  return reply.status(201).send();
+});
+
+const PORT = 3333;
+app
+  .listen({
+    host: "0.0.0.0",
+    port: process.env.PORT ? Number(process.env.PORT) : PORT,
+  })
+  .then(() => {
+    console.log(`🚀 HTTP server is running on port: ${PORT}`);
+  });
