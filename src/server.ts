@@ -2,8 +2,8 @@ import { PrismaClient } from "@prisma/client";
 import fastify from "fastify";
 import { z } from "zod";
 
-const app = fastify();
 const prisma = new PrismaClient();
+const app = fastify();
 
 app.get("/users", async () => {
   const users = await prisma.user.findMany();
@@ -30,6 +30,7 @@ app.post("/users", async (request, reply) => {
 });
 
 const PORT = 3333;
+
 app
   .listen({
     host: "0.0.0.0",

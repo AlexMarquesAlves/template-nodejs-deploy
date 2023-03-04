@@ -10,6 +10,7 @@
     "build": "tsup src",
     "start": "node dist/server.js",
     "start:dev": "tsx watch src/server.ts",
+    "render": "npm ci && npm run build && npx prisma migrate deploy",
     "full-lint": "eslint src --ext .ts,.tsx,.js,.jsx --fix --max-warnings=0",
     "husky:prepare": "husky install",
     "lint-staged": "lint-staged",
